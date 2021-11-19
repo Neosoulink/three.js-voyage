@@ -30,4 +30,10 @@ function animate() {
 
 	renderer.render(scene, camera);
 }
-animate();
+
+if (WEBGL.isWebGLAvailable()) {
+	animate();
+} else {
+	const warning = WEBGL.getWebGLErrorMessage();
+	document.getElementById('container').appendChild(warning);
+}
