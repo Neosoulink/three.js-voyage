@@ -10,7 +10,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-camera.position.z = 5;
+camera.position.z = 30;
 
 // CUBE
 const cubeGeometry = new THREE.BoxGeometry();
@@ -23,11 +23,16 @@ scene.add(cube);
 const lineMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff });
 
 const points = [];
-points.push(new THREE.Vector3(- 10, 0, 0));
+points.push(new THREE.Vector3(-10, 0, 0));
 points.push(new THREE.Vector3(0, 10, 0));
 points.push(new THREE.Vector3(10, 0, 0));
+points.push(new THREE.Vector3(-10, 0, 0));
 
 const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+
+const line = new THREE.Line(lineGeometry, lineMaterial);
+
+scene.add(line);
 
 // HELPERS
 const controls = new OrbitControls(camera, renderer.domElement);
