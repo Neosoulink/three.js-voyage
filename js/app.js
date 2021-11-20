@@ -1,4 +1,5 @@
-import * as  THREE from "three";
+import * as THREE from "three";
+import { WEBGL } from 'three/examples/jsm/WebGL';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 // GET STATED
@@ -12,11 +13,21 @@ document.body.appendChild(renderer.domElement);
 camera.position.z = 5;
 
 // CUBE
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
+const cubeGeometry = new THREE.BoxGeometry();
+const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
 scene.add(cube);
+
+// LINE
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff });
+
+const points = [];
+points.push(new THREE.Vector3(- 10, 0, 0));
+points.push(new THREE.Vector3(0, 10, 0));
+points.push(new THREE.Vector3(10, 0, 0));
+
+const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
 
 // HELPERS
 const controls = new OrbitControls(camera, renderer.domElement);
